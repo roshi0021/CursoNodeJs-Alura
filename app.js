@@ -1,8 +1,5 @@
-var express = require('express');
-var app = express();
+var app = require('./config/express')();
 var porta = 3000;
-
-app.set('view engine', 'ejs');
 
 app.get("/produtos", function(req, res){
   console.log('Listando...');
