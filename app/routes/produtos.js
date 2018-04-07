@@ -14,7 +14,7 @@ module.exports = function(app){
         console.log(err);
         return
       }
-      res.send(results);
+      res.render('produtos/lista', {lista: results});
     });
 
     connection.end();
