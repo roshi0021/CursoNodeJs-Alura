@@ -4,9 +4,9 @@ module.exports = function(app){
     console.log('Listando...');
 
     var connection = app.infra.connectionFactory();
-    var produtosBanco = new app.infra.produtosBanco(connection);
+    var produtosDAO = new app.infra.produtosDAO(connection);
 
-    produtosBanco.lista(function(err, results){
+    produtosDAO.lista(function(err, results){
       if(err){
         console.log(err);
         return
