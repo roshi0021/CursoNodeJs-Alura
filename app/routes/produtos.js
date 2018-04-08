@@ -25,7 +25,7 @@ module.exports = function(app){
 
   });
 
-  app.post("/produtos/salva", function(req, res){
+  app.post("/produtos", function(req, res){
     var connection = app.infra.connectionFactory();
     var produtosDAO = new app.infra.produtosDAO(connection);
 
@@ -35,7 +35,7 @@ module.exports = function(app){
         console.log(err);
         return;
       }
-      res.render('produtos/lista', {lista: results});
+      res.redirect('/produtos');
     })
 
     connection.end();
