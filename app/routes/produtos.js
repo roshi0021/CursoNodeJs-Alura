@@ -4,14 +4,17 @@ module.exports = function(app){
     console.log('Listando...');
 
     var connection = app.infra.connectionFactory();
+    var produtosBanco = app.infra.produtosBanco;
 
-    connection.query('select * from produtos', function(err, results){
+    produtosBanco.lista(connection, function(err, results){
       if(err){
         console.log(err);
         return
       }
       res.render('produtos/lista', {lista: results});
     });
+
+
 
     connection.end();
   });
