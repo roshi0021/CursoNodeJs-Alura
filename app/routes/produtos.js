@@ -18,4 +18,10 @@ module.exports = function(app){
 
     connection.end();
   });
+
+  app.get("/produtos/form", function(req, res){
+    console.log("Cheguei no form");
+    res.render('produtos/form');
+
+  });
 }
