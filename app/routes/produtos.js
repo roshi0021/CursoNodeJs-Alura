@@ -41,4 +41,22 @@ module.exports = function(app){
     connection.end();
 
   });
+
+  app.get("/produtos/deletar/:id", function(req, res){
+    var connection = app.infra.connectionFactory();
+    var produtosDAO = new app.infra.produtosDAO(connection);
+
+    var id = req.params.id;
+    id = id.replace(":", "");
+
+    console.log(id);
+    produtosDAO.deleta(id, function(err, results){
+      if(err){
+        console.log(err);
+      }
+      res.redirect('/produtos');
+    });
+
+    connection.end();
+  })
 }

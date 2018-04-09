@@ -6,6 +6,7 @@
       <td>titulo</td>
       <td>descricao</td>
       <td>preco</td>
+      <td>deletar</td>
     </tr>
     <% for(var i=0; i<lista.length; i++){ %>
       <tr>
@@ -13,6 +14,11 @@
           <td><%= lista[i].titulo %></td>
           <td><%= lista[i].descricao %></td>
           <td><%= lista[i].preco %></td>
+          <form action="/produtos/deletar/:id" method="get">
+            <td>
+                <a href="/produtos/deletar/:id=<%=lista[i].id%>">deletar</a>
+            </td>
+          </form>
       </tr>
     <% } %>
   </table>
