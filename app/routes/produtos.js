@@ -11,11 +11,16 @@ module.exports = function(app){
         console.log(err);
         return
       }
-      res.render('produtos/lista', {lista: results});
+      res.format({
+        html: function(){
+          res.render('produtos/lista', {lista: results});
+        },
+        json: function(){
+          res.json(results);
+        }
+      });
     });
-
-
-
+    
     connection.end();
   });
 
