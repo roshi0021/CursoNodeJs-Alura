@@ -26,7 +26,7 @@ module.exports = function(app){
 
   app.get("/produtos/form", function(req, res){
     console.log("Cheguei no form");
-    res.render('produtos/form', {validationErrors: {}});
+    res.render('produtos/form', {validationErrors: {}, produto: {}});
 
   });
 
@@ -41,7 +41,15 @@ module.exports = function(app){
 
     var errors = req.validationErrors();
     if(errors){
-      res.render('produtos/form', {validationErrors: errors});
+      res.format({
+        html: function(){
+          res.status(400).render('produtos/form', {validationErrors: errors, produto:produto});
+        },
+        json: function(){
+          res.status(400).json(errors);
+        }
+      });
+
       return;
     }
 
