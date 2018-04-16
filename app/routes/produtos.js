@@ -26,7 +26,7 @@ module.exports = function(app){
 
   app.get("/produtos/form", function(req, res){
     console.log("Cheguei no form");
-    res.render('produtos/form');
+    res.render('produtos/form', {validationErrors: {}});
 
   });
 
@@ -36,12 +36,12 @@ module.exports = function(app){
 
     var produto = req.body;
 
-    var validadorTitulo = req.assert('titulo', 'Titulo é obrigatório');
-    validadorTitulo.notEmpty();
+    req.assert('titulo', 'Titulo é obrigatório').notEmpty();
+    req.assert('preco', 'Preço precisa ser float').isFloat();
 
     var errors = req.validationErrors();
     if(errors){
-      res.render('produtos/form');
+      res.render('produtos/form', {validationErrors: errors});
       return;
     }
 

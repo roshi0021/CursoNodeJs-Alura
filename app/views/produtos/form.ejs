@@ -3,6 +3,15 @@
     <meta charset="utf-8">
   </head>
   <body>
+    <div class="errors">
+      <%if(validationErrors){%>
+        <ul>
+          <% for(var i = 0; i < validationErrors.length; i++){%>
+            <li><%= validationErrors[i].param %> - <%= validationErrors[i].msg%></li>
+            <% } %>
+          </ul>
+      <%}%>
+    </div>
       <form action="/produtos" method="post" id="cadastro">
         <div>
           <label for="titulo">Titulo</label>
