@@ -20,7 +20,7 @@ module.exports = function(app){
         }
       });
     });
-    
+
     connection.end();
   });
 
@@ -35,6 +35,16 @@ module.exports = function(app){
     var produtosDAO = new app.infra.produtosDAO(connection);
 
     var produto = req.body;
+
+    var validadorTitulo = req.assert('titulo', 'Titulo é obrigatório');
+    validadorTitulo.notEmpty();
+
+    var errors = req.validationErrors();
+    if(errors){
+      res.render('produtos/form');
+      return;
+    }
+
     produtosDAO.salva(produto, function(err, results){
       if(err){
         console.log(err);
