@@ -1,6 +1,6 @@
 
 module.exports = function(app){
-  app.get("/produtos", function(req, res){
+  app.get("/produtos", function(req, res, next){
     console.log('Listando...');
 
     var connection = app.infra.connectionFactory();
@@ -8,8 +8,7 @@ module.exports = function(app){
 
     produtosDAO.lista(function(err, results){
       if(err){
-        console.log(err);
-        return
+        return next(err);
       }
       res.format({
         html: function(){
