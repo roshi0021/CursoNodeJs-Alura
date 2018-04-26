@@ -4,8 +4,7 @@
   "description": "site da casa do codigo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Saulo Lima",
   "license": "ISC",
